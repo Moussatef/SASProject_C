@@ -37,6 +37,7 @@ void menuAffichage(){
 	scanf("%d",&chose);
 	switch(chose){
 		case 1 : 
+			trierParDesc();
 			break;
 		
 		case 2 :
@@ -48,7 +49,7 @@ void menuAffichage(){
 		case 5 :
 			printf("Saisir CIN : ");
 			scanf("%s",cin );
-			Rechercher(cin,countOfCompt);
+			Rechercher(cin);
 			
 			break;
 		case 6 : 
@@ -62,6 +63,49 @@ void menuAffichage(){
 	
 	
 } 
+
+void affichageListCompt(){
+	int j;
+	for(j=0 ; j < countOfCompt ; j++ ){
+	 	printf("\nCompte %d \n",j+1);
+	 	printf("\nCIN : %s " , list_compt[j].CIN); 
+	 	printf("\nNom : %s " , list_compt[j].Nom); 
+	 	printf("\nPrenom : %s " , list_compt[j].Prenom); 
+	 	printf("\nMontant : %f.2 \n" , list_compt[j].montant); 
+	 }
+}
+
+void trierParDesc(){
+	int   i,j;
+	compte compt[50];
+	
+	for(i = 0; i < countOfCompt ; i++){
+		for( j = i+1 ; j < countOfCompt ; j++ )
+		if(list_compt[i].montant < list_compt[j].montant){
+			
+			strcpy(compt[0].CIN , list_compt[i].CIN);
+			strcpy(compt[0].Nom , list_compt[i].Nom);
+			strcpy(compt[0].Prenom , list_compt[i].Prenom);
+			compt[0].montant = list_compt[i].montant;
+			
+			strcpy(list_compt[i].CIN , list_compt[j].CIN);
+			strcpy(list_compt[i].Nom , list_compt[j].Nom);
+			strcpy(list_compt[i].Prenom , list_compt[j].Prenom);
+			list_compt[i].montant = list_compt[j].montant;
+			
+			
+			strcpy(list_compt[j].CIN , compt[0].CIN);
+			strcpy(list_compt[j].Nom , compt[0].Nom);
+			strcpy(list_compt[j].Prenom , compt[0].Prenom);
+			list_compt[j].montant , compt[0].montant;
+			
+			
+			
+		}
+	}
+	
+	affichageListCompt();
+}
 
 
 void introduire_compte(){
@@ -113,7 +157,7 @@ void introduire_plusieurs_compte(int n){
 	
 } 
 
-void Rechercher(char CIN[50],int n){
+void Rechercher(char CIN[50]){
 	int i,cmp=0;
 	if(countOfCompt > 0)
 	for(i=0 ; i < countOfCompt ; i++){

@@ -2,24 +2,6 @@
 #include <string.h>
 #include <stdlib.h>
 
-void menuPrancipal(){
-	printf("-1) Introduire un compte bancaire (CIN, Nom et Prenom, Montant)\n");
-	printf("-2) Introduire plusieurs comptes bancaires (CIN, Nom et Prenom, Montant)\n");
-	printf("-3) Operations : \n\t\t- Retrait \n\t\t- Depot\n");
-	printf("-4) Affichage\n");
-	printf("-5) Exit\n");
-	
-} 
-void menuAffichage(){
-	printf("-1) Par Ordre Ascendant\n");
-	printf("-2) Par Ordre Descendant\n");
-	printf("-3) Par Ordre Ascendant (les comptes bancaire ayant un montant superieur à un chiffre introduit)\n");
-	printf("-4) Par Ordre Descendant (les comptes bancaire ayant un montant superieur à un chiffre introduit)\n");
-	printf("-5) Recherche par CIN\n");
-	printf("-6) Fidelisation\n");
-	printf("-7) Ajouter 1.3 aux comptes ayant les 3 premiers montants superieurs Quitter l’application\n");
-	
-} 
 
 int countOfCompt = 0;
 
@@ -33,6 +15,53 @@ typedef struct {
 
 
 compte list_compt[50];
+
+void menuPrancipal(){
+	printf("-1) Introduire un compte bancaire (CIN, Nom et Prenom, Montant)\n");
+	printf("-2) Introduire plusieurs comptes bancaires (CIN, Nom et Prenom, Montant)\n");
+	printf("-3) Operations : \n\t\t- Retrait \n\t\t- Depot\n");
+	printf("-4) Affichage\n");
+	printf("-5) Exit\n");
+	
+} 
+void menuAffichage(){
+	int chose ;
+	char cin[10];
+	printf("-1) Par Ordre Ascendant\n");
+	printf("-2) Par Ordre Descendant\n");
+	printf("-3) Par Ordre Ascendant (les comptes bancaire ayant un montant superieur à un chiffre introduit)\n");
+	printf("-4) Par Ordre Descendant (les comptes bancaire ayant un montant superieur à un chiffre introduit)\n");
+	printf("-5) Recherche par CIN\n");
+	printf("-6) Fidelisation\n");
+	printf("-7) Ajouter 1.3 aux comptes ayant les 3 premiers montants superieurs Quitter l’application\n");
+	scanf("%d",&chose);
+	switch(chose){
+		case 1 : 
+			break;
+		
+		case 2 :
+			break;
+		case 3 : 
+			break;
+		case 4 :
+			break;
+		case 5 :
+			printf("Saisir CIN : ");
+			scanf("%s",cin );
+			Rechercher(cin,countOfCompt);
+			
+			break;
+		case 6 : 
+			break;
+		case 7 :
+			break;
+		default : printf("\n votre chois ne pas en menu!!!");
+			
+	}
+	
+	
+	
+} 
 
 
 void introduire_compte(){
@@ -82,25 +111,43 @@ void introduire_plusieurs_compte(int n){
 	 	printf("\nMontant : %f.2 \n" , list_compt[j].montant); 
 	 }
 	
-	
-      
-	
 } 
+
+void Rechercher(char CIN[50],int n){
+	int i,cmp=0;
+	if(countOfCompt > 0)
+	for(i=0 ; i < countOfCompt ; i++){
+		if(strcmp(list_compt[i].CIN,CIN)  == 0){
+			printf("\nCIN : %s " , list_compt[i].CIN); 
+	 		printf("\nNom : %s " , list_compt[i].Nom); 
+	 		printf("\nPrenom : %s " , list_compt[i].Prenom); 
+	 		printf("\nMontant : %f.2 \n" , list_compt[i].montant); 
+			cmp++;
+		}
+	}
+	else{
+		printf("Pas de compte maintenant !!! ");
+		
+	}
+	
+	if(cmp == 0)
+	printf("Ce compte n'existe pas ");
+	
+}
+
+
 
 
 void main(){
 	int choix,nb_compte;
 	
+	do{	
+//	
 
 	menuPrancipal();
 	
 	printf("\n\n*****************************\nEntree votre chois svp entre (1 / 4) : ");
 	scanf("%d",&choix);
-	
-
-	
-
-	
 	switch(choix){
 		
 		case 1 : 
@@ -132,11 +179,14 @@ void main(){
 		default: printf("\n votre chois ne pas en menu!!!");
 			
 	}
+
+		}while(choix!=5);
+
 	
 	
-//	do{	
-//	
-//	}while(choix!=5);
+	
+	
+
 	
 	
 	

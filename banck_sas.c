@@ -21,7 +21,7 @@ void menuPrancipal(){
 	printf("-2) Introduire plusieurs comptes bancaires (CIN, Nom et Prenom, Montant)\n");
 	printf("-3) Operations : \n\t\t- Retrait \n\t\t- Depot\n");
 	printf("-4) Affichage\n");
-	printf("-5) Exit\n");
+	printf("-5) Quitter \n");
 	
 } 
 
@@ -101,13 +101,12 @@ void trierParAsc(){
 void menuAffichage(){
 	int chose ;
 	char cin[10];
-	printf("-1) Par Ordre Ascendant\n");
-	printf("-2) Par Ordre Descendant\n");
-	printf("-3) Par Ordre Ascendant (les comptes bancaire ayant un montant superieur � un chiffre introduit)\n");
-	printf("-4) Par Ordre Descendant (les comptes bancaire ayant un montant superieur � un chiffre introduit)\n");
-	printf("-5) Recherche par CIN\n");
-	printf("-6) Fidelisation\n");
-	printf("-7) Ajouter 1.3 aux comptes ayant les 3 premiers montants superieurs Quitter l�application\n");
+
+	printf("-1) Par Ordre Ascendant (les comptes bancaire ayant un montant superieur � un chiffre introduit)\n");
+	printf("-2) Par Ordre Descendant (les comptes bancaire ayant un montant superieur � un chiffre introduit)\n");
+	printf("-3) Recherche par CIN\n");
+	printf("-4) Fidelisation (Ajouter 1.3 aux comptes ayant les 3 premiers montants superieurs)\n");
+	
 	scanf("%d",&chose);
 	switch(chose){
 		case 1 : 
@@ -118,23 +117,42 @@ void menuAffichage(){
 			trierParDesc();
 			break;
 		case 3 : 
-			break;
-		case 4 :
-			break;
-		case 5 :
-			printf("Saisir CIN : ");
+		printf("Saisir CIN : ");
 			scanf("%s",cin );
 			Rechercher(cin);
-			
 			break;
-		case 6 : 
+		case 4 :
+			fidelisation();
 			break;
-		case 7 :
-			break;
+	
 		default : printf("\n votre chois ne pas en menu!!!");
 			
 	}
 } 
+
+
+void fidelisation(){
+	int i,j;
+	float total , benft = 1.3;
+	trierParDesc();
+	
+	for( i=0 ; i< 3; i++){
+		total = (benft / 100) * list_compt[i].montant ;
+		list_compt[i].montant += total; 
+	}
+	
+	
+	for( j=0 ; j< 3; j++){
+	 	printf("\n*****************************************{ Compte %d Benfite }*****************************************\n \n", (j+1));
+	 	printf("\n\t\t\t\tCIN : %s " , list_compt[j].CIN); 
+	 	printf("\n\t\t\t\tNom : %s " , list_compt[j].Nom); 
+	 	printf("\n\t\t\t\tPrenom : %s " , list_compt[j].Prenom); 
+	 	printf("\n\t\t\t\tMontant : %f2 \n" , list_compt[j].montant); 
+	 	printf("\n\t_____________________________________________________________________________________________\n");
+	 }
+		
+	
+}
 
 
 
@@ -180,6 +198,8 @@ void introduire_compte(){
     }while(cmp== 0);
         
 } 
+
+
 
 
 void introduire_plusieurs_compte(int n){
@@ -338,9 +358,6 @@ void main(){
 			break;
 			
 		}
-			
-			
-			
 			break;
 			
 		case 4 : 		

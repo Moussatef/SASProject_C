@@ -29,11 +29,11 @@ void menuAffichage(){
 	char cin[10];
 	printf("-1) Par Ordre Ascendant\n");
 	printf("-2) Par Ordre Descendant\n");
-	printf("-3) Par Ordre Ascendant (les comptes bancaire ayant un montant superieur à un chiffre introduit)\n");
-	printf("-4) Par Ordre Descendant (les comptes bancaire ayant un montant superieur à un chiffre introduit)\n");
+	printf("-3) Par Ordre Ascendant (les comptes bancaire ayant un montant superieur ï¿½ un chiffre introduit)\n");
+	printf("-4) Par Ordre Descendant (les comptes bancaire ayant un montant superieur ï¿½ un chiffre introduit)\n");
 	printf("-5) Recherche par CIN\n");
 	printf("-6) Fidelisation\n");
-	printf("-7) Ajouter 1.3 aux comptes ayant les 3 premiers montants superieurs Quitter l’application\n");
+	printf("-7) Ajouter 1.3 aux comptes ayant les 3 premiers montants superieurs Quitter lï¿½application\n");
 	scanf("%d",&chose);
 	switch(chose){
 		case 1 : 
@@ -138,11 +138,18 @@ void trierParAsc(){
 void introduire_compte(){
 	
 	float montant;
+	char cin[20];
+	int cmp=1;
 	
 	printf("Saisir CIN  : ");
-    scanf("%s",list_compt[countOfCompt].CIN);
+	scanf("%s",cin[0]);
+
+	cmp = Rechercher(cin[0]);
+
+
+	if(cmp == 0){
+	list_compt[countOfCompt].CIN = cin[0];
         
-		 
     printf("Saisir nom  : ");
     scanf("%s",list_compt[countOfCompt].Nom);
     
@@ -155,9 +162,15 @@ void introduire_compte(){
     scanf("%f",&montant);
         
     list_compt[countOfCompt].montant = montant;
+	countOfCompt++;
+
+	}else
+	prinf("CIN existe dÃ©jÃ  !!!");
+
+    
         
     
-    countOfCompt++;
+    
 } 
 
 
@@ -181,7 +194,7 @@ void introduire_plusieurs_compte(int n){
 	
 } 
 
-void Rechercher(char CIN[50]){
+int Rechercher(char CIN[50]){
 	int i,cmp=0;
 	if(countOfCompt > 0)
 	for(i=0 ; i < countOfCompt ; i++){
@@ -191,15 +204,20 @@ void Rechercher(char CIN[50]){
 	 		printf("\nPrenom : %s " , list_compt[i].Prenom); 
 	 		printf("\nMontant : %f.2 \n" , list_compt[i].montant); 
 			cmp++;
+			return 1;
 		}
 	}
 	else{
 		printf("Pas de compte maintenant !!! ");
+		return 0;
 		
 	}
 	
-	if(cmp == 0)
-	printf("Ce compte n'existe pas ");
+	if(cmp == 0){
+		printf("Ce compte n'existe pas ");
+		return 0;
+	}
+	
 	
 }
 

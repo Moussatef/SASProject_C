@@ -145,7 +145,7 @@ void introduire_compte(){
 	
 	float montant;
 	char cinn[20];
-	int cmp=1;
+	int cmp= 0;
 	
 	do{
 	
@@ -156,7 +156,7 @@ void introduire_compte(){
 	cmp = RechercherExist(cinn);
 
 	
-	if(cmp == 0){
+	if(cmp == -1){
 		
 	strcpy(list_compt[countOfCompt].CIN , cinn);
         
@@ -177,7 +177,7 @@ void introduire_compte(){
 	}else
 	printf("CIN existe deja  !!! \n");
 
-    }while(cmp==1);
+    }while(cmp== 0);
         
 } 
 
@@ -244,12 +244,12 @@ int RechercherExist(char CIN[50]){
 		}
 	}
 	else{
-		return 0;
+		return -1;
 		
 	}
 	
 	if(cmp == 0){
-		return 0;
+		return -1;
 	}
 	
 }
@@ -258,37 +258,51 @@ void operationMethod(int opr){
 	char cin[50];
 	int pos ;
 	float mnt;
+	printf("Sasir CIN pour Retrait :  ");
+	scanf("%s",cin);
+	pos = RechercherExist(cin);
+	afficherCompte(pos);
+	if(pos >= 0){
 	if(opr==1){
-		printf("Sasir CIN pour Retrait :  ");
-		scanf("%s",cin);
-		pos = RechercherExist(cin);
-		if(pos >= 0){
-			afficherCompte(pos);
-			printf("Saisir montante retrait : ");
-			scanf("%f",&mnt);
-			printf("%f",mnt);
-			
-			if(mnt > 0 ){
-				if(mnt <= list_compt[pos].montant && list_compt[pos].montant > 0  ){
-					float montant = list_compt[pos].montant;
-					montant =  montant - mnt;
-					list_compt[pos].montant = montant;
-					printf("Operation terminee avec succes, recevez votre argent : %.2f \n\n",mnt);
-					printf("Le reste est dans votre compte : %.2f",list_compt[pos].montant);
-				}else
-				printf("Votre montant n'est pas suffisant");
-					
-					
-				
+		
+		printf("Saisir montante retrait : ");
+		scanf("%f",&mnt);
+		
+		if(mnt > 0 ){
+			if(mnt <= list_compt[pos].montant && list_compt[pos].montant > 0  ){
+				float montant = list_compt[pos].montant;
+				montant =  montant - mnt;
+				list_compt[pos].montant = montant;
+				printf("Operation terminee avec succes, recevez votre argent : %.2f \n\n",mnt);
+				printf("Le reste est dans votre compte : %.2f",list_compt[pos].montant);
 			}else
-			printf("Le montant doit etre positif !!!");
-			
+				printf("Votre montant n'est pas suffisant");
+				
 		}else
-		printf("Ce compte n'existe pas ");
+		printf("Le montant doit etre positif !!!");
 		
-		
-		
+	
 	}
+	if(opr == 2){
+		printf("Saisir montante depot : ");
+		scanf("%f",&mnt);
+		
+		if(mnt > 0 ){
+			
+			float montant = list_compt[pos].montant;
+			montant =  montant + mnt;
+			list_compt[pos].montant = montant;
+			printf("--------------------- Operation terminee avec succes, montante depot est  : %.2f --------------------- \n\n",mnt);
+			printf("--------------------- Le montante est dans votre compte : %.2f --------------------- \n\n",list_compt[pos].montant);
+				
+		}else
+		printf("Le montant doit etre positif !!!\n");
+	}
+	
+	}else
+		printf("Ce compte n'existe pas \n");
+	
+	
 }
 
 

@@ -60,9 +60,6 @@ void menuAffichage(){
 		default : printf("\n votre chois ne pas en menu!!!");
 			
 	}
-	
-	
-	
 } 
 
 void affichageListCompt(){
@@ -74,7 +71,7 @@ void affichageListCompt(){
 	 	printf("\n\t\t\t\tNom : %s " , list_compt[j].Nom); 
 	 	printf("\n\t\t\t\tPrenom : %s " , list_compt[j].Prenom); 
 	 	printf("\n\t\t\t\tMontant : %f2 \n" , list_compt[j].montant); 
-	 	printf("\n______________________________________________________\n");
+	 	printf("\n\t_____________________________________________________________________________________________\n");
 	 }
 }
 
@@ -101,9 +98,6 @@ void trierParDesc(){
 			strcpy(list_compt[j].Nom , compt[0].Nom);
 			strcpy(list_compt[j].Prenom , compt[0].Prenom);
 			list_compt[j].montant = compt[0].montant;
-			
-			
-			
 		}
 	}
 	
@@ -133,8 +127,6 @@ void trierParAsc(){
 			strcpy(list_compt[j].Nom , compt[0].Nom);
 			strcpy(list_compt[j].Prenom , compt[0].Prenom);
 			list_compt[j].montant = compt[0].montant;
-			
-			
 			
 		}
 	}
@@ -166,8 +158,6 @@ void introduire_compte(){
         
     
     countOfCompt++;
-      
-	
 } 
 
 
@@ -180,7 +170,6 @@ void introduire_plusieurs_compte(int n){
 		printf("\nCompte %d \n",i+1);
 		introduire_compte();
 	}
-	 
 	 
 	 for(j=0 ; j < countOfCompt ; j++ ){
 	 	printf("\nCompte %d \n",j+1);
@@ -215,14 +204,10 @@ void Rechercher(char CIN[50]){
 }
 
 
-
-
 void main(){
 	int choix,nb_compte;
 	
 	do{	
-//	
-
 	menuPrancipal();
 	
 	printf("\n\n*****************************\nEntree votre chois svp entre (1 / 4) : ");
@@ -253,24 +238,11 @@ void main(){
 			printf("\nExit\n");
 			break;	
 				
-		
-			
 		default: printf("\n votre chois ne pas en menu!!!");
 			
 	}
 
 		}while(choix!=5);
 
-	
-	
-	
-	
-
-	
-	
-	
-	
-	
-	
 }
 

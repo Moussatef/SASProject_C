@@ -24,6 +24,80 @@ void menuPrancipal(){
 	printf("-5) Exit\n");
 	
 } 
+
+
+
+void affichageListCompt(){
+	int j;
+	for(j=0 ; j < countOfCompt ; j++ ){
+		
+	 	printf("\n*****************************************{ Compte %d }*****************************************\n \n", (j+1));
+	 	printf("\n\t\t\t\tCIN : %s " , list_compt[j].CIN); 
+	 	printf("\n\t\t\t\tNom : %s " , list_compt[j].Nom); 
+	 	printf("\n\t\t\t\tPrenom : %s " , list_compt[j].Prenom); 
+	 	printf("\n\t\t\t\tMontant : %f2 \n" , list_compt[j].montant); 
+	 	printf("\n\t_____________________________________________________________________________________________\n");
+	 }
+}
+
+void trierParDesc(){
+	
+	int   i,j;
+	compte compt[50];
+	
+	for(i = 0; i < countOfCompt ; i++){
+		for( j = i+1 ; j < countOfCompt ; j++ )
+		if(list_compt[i].montant < list_compt[j].montant){
+			
+			strcpy(compt[0].CIN , list_compt[i].CIN);
+			strcpy(compt[0].Nom , list_compt[i].Nom);
+			strcpy(compt[0].Prenom , list_compt[i].Prenom);
+			compt[0].montant = list_compt[i].montant;
+			
+			strcpy(list_compt[i].CIN , list_compt[j].CIN);
+			strcpy(list_compt[i].Nom , list_compt[j].Nom);
+			strcpy(list_compt[i].Prenom , list_compt[j].Prenom);
+			list_compt[i].montant = list_compt[j].montant;
+			
+			
+			strcpy(list_compt[j].CIN , compt[0].CIN);
+			strcpy(list_compt[j].Nom , compt[0].Nom);
+			strcpy(list_compt[j].Prenom , compt[0].Prenom);
+			list_compt[j].montant = compt[0].montant;
+		}
+	}
+	
+	affichageListCompt();
+}
+void trierParAsc(){
+	int   i,j;
+	compte compt[50];
+	
+	for(i = 0; i < countOfCompt ; i++){
+		for( j = i+1 ; j < countOfCompt ; j++ )
+		if(list_compt[i].montant > list_compt[j].montant){
+			
+			strcpy(compt[0].CIN , list_compt[i].CIN);
+			strcpy(compt[0].Nom , list_compt[i].Nom);
+			strcpy(compt[0].Prenom , list_compt[i].Prenom);
+			compt[0].montant = list_compt[i].montant;
+			
+			strcpy(list_compt[i].CIN , list_compt[j].CIN);
+			strcpy(list_compt[i].Nom , list_compt[j].Nom);
+			strcpy(list_compt[i].Prenom , list_compt[j].Prenom);
+			list_compt[i].montant = list_compt[j].montant;
+			
+			
+			strcpy(list_compt[j].CIN , compt[0].CIN);
+			strcpy(list_compt[j].Nom , compt[0].Nom);
+			strcpy(list_compt[j].Prenom , compt[0].Prenom);
+			list_compt[j].montant = compt[0].montant;
+			
+		}
+	}
+	
+	affichageListCompt();
+}
 void menuAffichage(){
 	int chose ;
 	char cin[10];
@@ -62,93 +136,29 @@ void menuAffichage(){
 	}
 } 
 
-void affichageListCompt(){
-	int j;
-	for(j=0 ; j < countOfCompt ; j++ ){
-		
-	 	printf("\n*****************************************{ Compte %d }*****************************************\n \n", (j+1));
-	 	printf("\n\t\t\t\tCIN : %s " , list_compt[j].CIN); 
-	 	printf("\n\t\t\t\tNom : %s " , list_compt[j].Nom); 
-	 	printf("\n\t\t\t\tPrenom : %s " , list_compt[j].Prenom); 
-	 	printf("\n\t\t\t\tMontant : %f2 \n" , list_compt[j].montant); 
-	 	printf("\n\t_____________________________________________________________________________________________\n");
-	 }
-}
 
-void trierParDesc(){
-	int   i,j;
-	compte compt[50];
-	
-	for(i = 0; i < countOfCompt ; i++){
-		for( j = i+1 ; j < countOfCompt ; j++ )
-		if(list_compt[i].montant < list_compt[j].montant){
-			
-			strcpy(compt[0].CIN , list_compt[i].CIN);
-			strcpy(compt[0].Nom , list_compt[i].Nom);
-			strcpy(compt[0].Prenom , list_compt[i].Prenom);
-			compt[0].montant = list_compt[i].montant;
-			
-			strcpy(list_compt[i].CIN , list_compt[j].CIN);
-			strcpy(list_compt[i].Nom , list_compt[j].Nom);
-			strcpy(list_compt[i].Prenom , list_compt[j].Prenom);
-			list_compt[i].montant = list_compt[j].montant;
-			
-			
-			strcpy(list_compt[j].CIN , compt[0].CIN);
-			strcpy(list_compt[j].Nom , compt[0].Nom);
-			strcpy(list_compt[j].Prenom , compt[0].Prenom);
-			list_compt[j].montant = compt[0].montant;
-		}
-	}
-	
-	affichageListCompt();
-}
 
-void trierParAsc(){
-	int   i,j;
-	compte compt[50];
-	
-	for(i = 0; i < countOfCompt ; i++){
-		for( j = i+1 ; j < countOfCompt ; j++ )
-		if(list_compt[i].montant > list_compt[j].montant){
-			
-			strcpy(compt[0].CIN , list_compt[i].CIN);
-			strcpy(compt[0].Nom , list_compt[i].Nom);
-			strcpy(compt[0].Prenom , list_compt[i].Prenom);
-			compt[0].montant = list_compt[i].montant;
-			
-			strcpy(list_compt[i].CIN , list_compt[j].CIN);
-			strcpy(list_compt[i].Nom , list_compt[j].Nom);
-			strcpy(list_compt[i].Prenom , list_compt[j].Prenom);
-			list_compt[i].montant = list_compt[j].montant;
-			
-			
-			strcpy(list_compt[j].CIN , compt[0].CIN);
-			strcpy(list_compt[j].Nom , compt[0].Nom);
-			strcpy(list_compt[j].Prenom , compt[0].Prenom);
-			list_compt[j].montant = compt[0].montant;
-			
-		}
-	}
-	
-	affichageListCompt();
-}
+
 
 
 void introduire_compte(){
 	
 	float montant;
-	char cin[20];
+	char cinn[20];
 	int cmp=1;
 	
+	do{
+	
+	
 	printf("Saisir CIN  : ");
-	scanf("%s",cin[0]);
+	scanf("%s",cinn);
 
-	cmp = Rechercher(cin[0]);
+	cmp = RechercherExist(cinn);
 
-
+	
 	if(cmp == 0){
-	list_compt[countOfCompt].CIN = cin[0];
+		
+	strcpy(list_compt[countOfCompt].CIN , cinn);
         
     printf("Saisir nom  : ");
     scanf("%s",list_compt[countOfCompt].Nom);
@@ -165,9 +175,9 @@ void introduire_compte(){
 	countOfCompt++;
 
 	}else
-	prinf("CIN existe déjà !!!");
+	printf("CIN existe deja� !!! \n");
 
-    
+    }while(cmp==1);
         
     
     
@@ -194,7 +204,7 @@ void introduire_plusieurs_compte(int n){
 	
 } 
 
-int Rechercher(char CIN[50]){
+void Rechercher(char CIN[50]){
 	int i,cmp=0;
 	if(countOfCompt > 0)
 	for(i=0 ; i < countOfCompt ; i++){
@@ -204,17 +214,36 @@ int Rechercher(char CIN[50]){
 	 		printf("\nPrenom : %s " , list_compt[i].Prenom); 
 	 		printf("\nMontant : %f.2 \n" , list_compt[i].montant); 
 			cmp++;
-			return 1;
 		}
 	}
 	else{
 		printf("Pas de compte maintenant !!! ");
-		return 0;
+		
 		
 	}
 	
 	if(cmp == 0){
 		printf("Ce compte n'existe pas ");
+	
+	}
+	
+	
+}
+int RechercherExist(char CIN[50]){
+	int i,cmp=0;
+	if(countOfCompt > 0)
+	for(i=0 ; i < countOfCompt ; i++){
+		if(strcmp(list_compt[i].CIN,CIN)  == 0){
+			cmp++;
+			return 1;
+		}
+	}
+	else{
+		return 0;
+		
+	}
+	
+	if(cmp == 0){
 		return 0;
 	}
 	

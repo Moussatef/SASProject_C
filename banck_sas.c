@@ -35,7 +35,7 @@ void affichageListCompt(){
 	 	printf("\n\t\t\t\tCIN : %s " , list_compt[j].CIN); 
 	 	printf("\n\t\t\t\tNom : %s " , list_compt[j].Nom); 
 	 	printf("\n\t\t\t\tPrenom : %s " , list_compt[j].Prenom); 
-	 	printf("\n\t\t\t\tMontant : %f2 \n" , list_compt[j].montant); 
+	 	printf("\n\t\t\t\tMontant : %.2f \n" , list_compt[j].montant); 
 	 	printf("\n\t_____________________________________________________________________________________________\n");
 	 }
 }
@@ -67,7 +67,7 @@ void trierParDesc(){
 		}
 	}
 	
-	affichageListCompt();
+	
 }
 void trierParAsc(){
 	int   i,j;
@@ -96,7 +96,7 @@ void trierParAsc(){
 		}
 	}
 	
-	affichageListCompt();
+	
 }
 void menuAffichage(){
 	int chose ;
@@ -111,10 +111,12 @@ void menuAffichage(){
 	switch(chose){
 		case 1 : 
 			trierParAsc();
+			affichageListCompt();
 			break;
 		
 		case 2 :
 			trierParDesc();
+			affichageListCompt();
 			break;
 		case 3 : 
 		printf("Saisir CIN : ");
@@ -147,7 +149,7 @@ void fidelisation(){
 	 	printf("\n\t\t\t\tCIN : %s " , list_compt[j].CIN); 
 	 	printf("\n\t\t\t\tNom : %s " , list_compt[j].Nom); 
 	 	printf("\n\t\t\t\tPrenom : %s " , list_compt[j].Prenom); 
-	 	printf("\n\t\t\t\tMontant : %f2 \n" , list_compt[j].montant); 
+	 	printf("\n\t\t\t\tMontant : %.2f \n" , list_compt[j].montant); 
 	 	printf("\n\t_____________________________________________________________________________________________\n");
 	 }
 		

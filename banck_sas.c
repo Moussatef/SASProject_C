@@ -179,8 +179,6 @@ void introduire_compte(){
 
     }while(cmp==1);
         
-    
-    
 } 
 
 
@@ -199,21 +197,26 @@ void introduire_plusieurs_compte(int n){
 	 	printf("\nCIN : %s " , list_compt[j].CIN); 
 	 	printf("\nNom : %s " , list_compt[j].Nom); 
 	 	printf("\nPrenom : %s " , list_compt[j].Prenom); 
-	 	printf("\nMontant : %f.2 \n" , list_compt[j].montant); 
+	 	printf("\nMontant : %.2f \n" , list_compt[j].montant); 
 	 }
 	
 } 
+
+void afficherCompte(int pos){
+		printf("\nCIN : %s " , list_compt[pos].CIN); 
+	 	printf("\nNom : %s " , list_compt[pos].Nom); 
+	 	printf("\nPrenom : %s " , list_compt[pos].Prenom); 
+	 	printf("\nMontant : %.2f \n" , list_compt[pos].montant); 
+}
 
 void Rechercher(char CIN[50]){
 	int i,cmp=0;
 	if(countOfCompt > 0)
 	for(i=0 ; i < countOfCompt ; i++){
 		if(strcmp(list_compt[i].CIN,CIN)  == 0){
-			printf("\nCIN : %s " , list_compt[i].CIN); 
-	 		printf("\nNom : %s " , list_compt[i].Nom); 
-	 		printf("\nPrenom : %s " , list_compt[i].Prenom); 
-	 		printf("\nMontant : %f.2 \n" , list_compt[i].montant); 
+			afficherCompte(i);
 			cmp++;
+			break;
 		}
 	}
 	else{
@@ -229,13 +232,15 @@ void Rechercher(char CIN[50]){
 	
 	
 }
+
+
 int RechercherExist(char CIN[50]){
 	int i,cmp=0;
 	if(countOfCompt > 0)
 	for(i=0 ; i < countOfCompt ; i++){
 		if(strcmp(list_compt[i].CIN,CIN)  == 0){
 			cmp++;
-			return 1;
+			return i;
 		}
 	}
 	else{
@@ -247,12 +252,48 @@ int RechercherExist(char CIN[50]){
 		return 0;
 	}
 	
-	
+}
+
+void operationMethod(int opr){
+	char cin[50];
+	int pos ;
+	float mnt;
+	if(opr==1){
+		printf("Sasir CIN pour Retrait :  ");
+		scanf("%s",cin);
+		pos = RechercherExist(cin);
+		if(pos >= 0){
+			afficherCompte(pos);
+			printf("Saisir montante retrait : ");
+			scanf("%f",&mnt);
+			printf("%f",mnt);
+			
+			if(mnt > 0 ){
+				if(mnt <= list_compt[pos].montant && list_compt[pos].montant > 0  ){
+					float montant = list_compt[pos].montant;
+					montant =  montant - mnt;
+					list_compt[pos].montant = montant;
+					printf("Operation terminee avec succes, recevez votre argent : %.2f \n\n",mnt);
+					printf("Le reste est dans votre compte : %.2f",list_compt[pos].montant);
+				}else
+				printf("Votre montant n'est pas suffisant");
+					
+					
+				
+			}else
+			printf("Le montant doit etre positif !!!");
+			
+		}else
+		printf("Ce compte n'existe pas ");
+		
+		
+		
+	}
 }
 
 
 void main(){
-	int choix,nb_compte;
+	int choix,nb_compte,operation;
 	
 	do{	
 	menuPrancipal();
@@ -274,7 +315,18 @@ void main(){
 			break;
 			
 		case 3 : 
-			printf("\nOperations : \n\t\t- Retrait \n\t\t- Depot");
+		
+		while(operation != 1 || operation!=2 ){
+			printf("\nOperations : \n1- Retrait \n2- Depot\n");
+			scanf("%d",&operation);
+			operationMethod(operation);
+			
+			break;
+			
+		}
+			
+			
+			
 			break;
 			
 		case 4 : 		
